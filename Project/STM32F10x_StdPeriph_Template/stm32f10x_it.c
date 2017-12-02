@@ -39,6 +39,7 @@
 
 extern uint16_t CAN_timer;
 extern uint16_t ds18b20_timer;
+extern uint16_t pwm_timer;
     
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
@@ -151,7 +152,10 @@ void SysTick_Handler(void)
    {
       ds18b20_timer--;
    }
- 
+   if(pwm_timer>0)
+   {
+      pwm_timer--; 
+   }
   
 }
 

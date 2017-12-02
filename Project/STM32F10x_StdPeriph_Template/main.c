@@ -24,6 +24,7 @@
 #include <stdio.h>
 #include "stm32_Led.h"
 #include "stm32_can.h" 
+#include "stm32_pwm.h"
 #include  "ds18b20.h"
 
 /* Private typedef -----------------------------------------------------------*/
@@ -61,6 +62,7 @@ int main(void)
     DS18B20_GPIO_Config();
     CAN_Config_Init();
     Led_GPIO_Init();
+    PWM_Init();
 
  
   /* Infinite loop */
@@ -68,6 +70,7 @@ int main(void)
   {
       CAN_task();
       DS18B20_task();
+      PWM_task();
       
 
    
