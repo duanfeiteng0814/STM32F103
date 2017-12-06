@@ -36,9 +36,9 @@
 /* Private variables ---------------------------------------------------------*/
 uint16_t pwm_timer =PWM_TIMER;   
 uint16_t CCR1_Val = 0;
-uint16_t CCR2_Val = 375;
-uint16_t CCR3_Val = 250;
-uint16_t CCR4_Val = 25;
+uint16_t CCR2_Val = 999;
+uint16_t CCR3_Val = 999;
+uint16_t CCR4_Val = 999;
     
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/

@@ -26,6 +26,7 @@
 #include "stm32_can.h" 
 #include "stm32_pwm.h"
 #include  "ds18b20.h"
+#include  "LCD.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -33,9 +34,9 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-
+extern Temperature_U  temperature;
 /* Private function prototypes -----------------------------------------------*/
-
+char Step_count[4];
 /* Private functions ---------------------------------------------------------*/
 void Init_SysTick(void);
 void CAN_task(void);
@@ -45,7 +46,7 @@ void CAN_Config_Init();
   * @param  None
   * @retval None
   */
-
+char strTemp[4];
 
 int main(void)
 {
@@ -63,6 +64,9 @@ int main(void)
     CAN_Config_Init();
     Led_GPIO_Init();
     PWM_Init();
+    LCD_Init();                      //oled 初始化  
+    LCD_Fill(0xff);                  //屏全亮 
+    LCD_CLS();                      //全屏幕灭
 
  
   /* Infinite loop */
@@ -71,7 +75,9 @@ int main(void)
       CAN_task();
       DS18B20_task();
       PWM_task();
-      
+         sprintf(strTemp, "%.01f", temperature.Temperature_Value); 
+       LCD_P8x16Str(20,2,"Temperature"); 
+       LCD_P8x16Str(40,4,strTemp); 
 
    
   }
